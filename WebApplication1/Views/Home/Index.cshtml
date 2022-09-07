@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WebApplication1.Models.User>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+    <div>
+        <button id="btnCreate"  class="btn">Create New</button>
+    </div>
+
+    <hr />
+    <div id="userList">
+        @Html.Partial("UserList", Model)
+    </div>
+
+<script>
+    $('#btnCreate').click(ev => {
+        $("#formModal .modal-body").load("/Home/Create/")
+        $("#formModal .modal-title").text('Create New')
+        $("#formModal").modal('show')
+    })
+    let editUser = id => {
+        $("#formModal .modal-body").load("/Home/Edit/" + id)
+        $("#formModal .modal-title").text('Edit')
+        $("#formModal").modal('show')
+    }
+
+    let deleteUser = id => {
+        $("#formModal .modal-body").load("/Home/Delete/" + id)
+        $("#formModal .modal-title").text('Delete')
+        $("#formModal").modal('show')
+    }
+</script>
